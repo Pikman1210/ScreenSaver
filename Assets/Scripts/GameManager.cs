@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
+    private bool settingsOpen = false;
+    public GameObject settingsMenu;
+
     // public Camera cam;
     void Start()
     {
@@ -12,12 +15,24 @@ public class GameManager : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Escape))
+       if (Input.GetKeyDown(KeyCode.Escape) && settingsOpen == false)
         {
-#if UNITY_EDITOR
-            UnityEditor.EditorApplication.isPlaying = false;
-#endif
-            Application.Quit();
+            settingsOpen = true;
+            settingsMenu.SetActive(true);
+            Debug.Log("Settings Open");
+        } else if (Input.GetKeyDown(KeyCode.Escape) && settingsOpen == true)
+        {
+            settingsOpen = false;
+            settingsMenu.SetActive(false);
+            Debug.Log("Settings Closed");
         }
+    }
+
+    public void Quit()
+    {
+#if UNITY_EDITOR
+        UnityEditor.EditorApplication.isPlaying = false;
+#endif
+        Application.Quit();
     }
 }
