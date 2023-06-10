@@ -4,10 +4,10 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
-
+    // public Camera cam;
     void Start()
     {
-        
+        // cam.backgroundColor = 3;
     }
 
     void Update()
