@@ -5,26 +5,47 @@ using UnityEngine;
 public class GameManager : MonoBehaviour
 {
     private bool settingsOpen = false;
+    private bool cursorVisible = true;
+    private int color;
+
     public GameObject settingsMenu;
 
-    // public Camera cam;
     void Start()
     {
-        // cam.backgroundColor = 3;
+        Cursor.visible = true;
+
+        color = PlayerPrefs.GetInt("Color");
+        FindObjectOfType<BackgroundChanger>().ChangeBackground(color);
     }
 
     void Update()
     {
+        if (Input.GetKeyDown(KeyCode.H) && cursorVisible == true)
+        {
+            cursorVisible = false;
+            Cursor.visible = false;
+        } else if (Input.GetKeyDown(KeyCode.H) && cursorVisible == false)
+        {
+            cursorVisible = true;
+            Cursor.visible = true;
+        }
+
        if (Input.GetKeyDown(KeyCode.Escape) && settingsOpen == false)
         {
+            cursorVisible = true;
+            Cursor.visible = true;
             settingsOpen = true;
             settingsMenu.SetActive(true);
-            Debug.Log("Settings Open");
         } else if (Input.GetKeyDown(KeyCode.Escape) && settingsOpen == true)
         {
+            cursorVisible = true;
+            Cursor.visible = true;
             settingsOpen = false;
             settingsMenu.SetActive(false);
-            Debug.Log("Settings Closed");
+        } else
+        {
+            cursorVisible = true;
+            Cursor.visible = true;
         }
     }
 
