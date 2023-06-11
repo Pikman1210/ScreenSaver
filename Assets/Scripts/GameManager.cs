@@ -42,10 +42,6 @@ public class GameManager : MonoBehaviour
             Cursor.visible = true;
             settingsOpen = false;
             settingsMenu.SetActive(false);
-        } else
-        {
-            cursorVisible = true;
-            Cursor.visible = true;
         }
     }
 
